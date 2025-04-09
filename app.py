@@ -42,6 +42,10 @@ def remove_background():
         app.logger.error(f'Processing error: {str(e)}')
         return {'error': 'Image processing failed'}, 500
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+    
 @app.route('/health', methods=['GET'])
 def health_check():
     return {'status': 'healthy', 'version': '1.0.0'}
