@@ -1,5 +1,4 @@
-# requirements.txt
 Flask==3.0.2
 rembg==2.0.50
 pillow==10.3.0
-waitress==3.2.1
+waitress==3.0.2  # Correct version (instead of 3.2.1)
