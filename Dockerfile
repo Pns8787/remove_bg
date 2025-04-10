@@ -13,6 +13,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE $PORT  # Add this line
-
-CMD ["sh", "-c", "waitress-serve --port=$PORT app:app"]
+CMD ["sh", "-c", "waitress-serve --port=$PORT --host=0.0.0.0 app:app"]
