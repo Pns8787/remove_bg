@@ -1,12 +1,11 @@
-# app.py
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template  # Added render_template
 from rembg import remove
 import io
 import os
 import logging
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10MB limit
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 app.logger.setLevel(logging.INFO)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
@@ -42,14 +41,15 @@ def remove_background():
         app.logger.error(f'Processing error: {str(e)}')
         return {'error': 'Image processing failed'}, 500
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-    
 @app.route('/health', methods=['GET'])
 def health_check():
     return {'status': 'healthy', 'version': '1.0.0'}
 
+@app.route('/')
+def index():
+    return render_template('index.html')  # Now properly imported
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+    
