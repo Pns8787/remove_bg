@@ -13,4 +13,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["sh", "-c", "waitress-serve --port=$PORT --host=0.0.0.0 app:app"]
+# Use explicit port 10000 in CMD (no variable)
+CMD ["sh", "-c", "waitress-serve --port=10000 --host=0.0.0.0 app:app"]
